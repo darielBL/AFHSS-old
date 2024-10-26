@@ -111,7 +111,7 @@ section,
 # Global Section Titles
 --------------------------------------------------------------*/
 .section-title {
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   position: relative;
 }
 
@@ -731,27 +731,36 @@ section,
 /*--------------------------------------------------------------
 # Team Section
 --------------------------------------------------------------*/
+.team {
+  background-color: #f4f5fe;
+}
+
 .team .member {
   position: relative;
+  background-color: #040677;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 10px 10px 15px #040677b6;
 }
+
 
 .team .member .pic {
   overflow: hidden;
-  margin-bottom: 50px;
+  margin: 20px 5px 50px 5px;
+  border-radius: 50%;
 }
 
 .team .member .member-info {
   background-color: var(--surface-color);
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  bottom: -50px;
-  left: 20px;
-  right: 20px;
-  padding: 20px 15px;
+  position: relative;
+  padding: 20px;
   overflow: hidden;
   transition: 0.5s;
+
 }
+
+
 
 .team .member h4 {
   font-weight: 700;
@@ -780,22 +789,43 @@ section,
 
 .team .member .social {
   position: absolute;
-  right: 15px;
+  right: 35px;
   bottom: 15px;
+
 }
 
 .team .member .social a {
   transition: color 0.3s;
   color: color-mix(in srgb, var(--default-color), transparent 70%);
+
 }
+
+
+
+.team .member .social i {
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+
 
 .team .member .social a:hover {
   color: var(--accent-color);
 }
 
-.team .member .social i {
-  font-size: 16px;
-  margin: 0 2px;
+
+.animation {
+  box-shadow: 20px 10px 15px #040677b6 !important; 
+  border-radius: 120px 20px 0 0 !important;
+  transform: rotate3d(10, -10, 0, 20deg);
+  transition: 1s;
+}
+
+.animation2 {
+  transform: translate(-2.1rem, -2ex) !important;
+  
+  box-shadow: 15px 10px 15px #222222ce;
+  transition: 1s;
 }
 
 
@@ -961,12 +991,13 @@ section,
 }
 
 @media (min-width: 768px) {
- 
+
   .utiles {
     display: flex;
     justify-content: center;
   }
-  .servicios{
+
+  .servicios {
     display: flex;
     justify-content: end;
   }

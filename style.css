@@ -103,7 +103,7 @@ section,
 
   section,
   .section {
-    scroll-margin-top: 66px;
+    scroll-margin-top: 70px;
   }
 }
 
@@ -155,9 +155,11 @@ section,
   --heading-color: #ffffff;
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 20px 0;
+  padding: 5px 0;
   transition: all 0.5s;
   z-index: 997;
+  height: 40px;
+
 }
 
 
@@ -185,7 +187,18 @@ section,
 /* Global Header on Scroll
   ------------------------------*/
 .scrolled .header {
-  --background-color: #10058c;
+  /* From https://css.glass */
+background: rgba(16, 5, 140, 0.70);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(12.8px);
+-webkit-backdrop-filter: blur(12.8px);
+  backdrop-filter: blur(5px);
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 5px;
+  border-radius: 50px;
+  transition: 1s;
 }
 
 /*--------------------------------------------------------------
@@ -796,7 +809,7 @@ section,
 
 .team .member .social a {
   transition: color 0.3s;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
 
 }
 

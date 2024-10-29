@@ -46,18 +46,7 @@
 
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-
+ 
   /**
    * Preloader
    */
@@ -68,26 +57,6 @@
     });
   }
 
-  /**
-   * Scroll top button
-   */
-  let scrollTop = document.querySelector('.scroll-top');
-
-  function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-    }
-  }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
 
   /**
    * Animation on scroll function and init
@@ -102,84 +71,56 @@
   }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Initiate glightbox
+   /**
+   * Animation of team cards
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
+  const member1 = document.getElementById('member1');
+  const member2 = document.getElementById('member2');
+  const pic1 =document.getElementById('pic1');
+  const pic2 =document.getElementById('pic2');
+  
+  member1.addEventListener('mouseenter', () => {
+      member1.classList.add('animation');
+      pic1.classList.add('animation2')
+  
+  });
+  
+  member1.addEventListener('mouseleave', () => {
+      member1.classList.remove('animation');
+      pic1.classList.remove('animation2')
+  });
+  
+  member2.addEventListener('mouseenter', () => {
+      member2.classList.add('animation');
+      pic2.classList.add('animation2')
+  });
+  
+  member2.addEventListener('mouseleave', () => {
+      member2.classList.remove('animation');
+      pic2.classList.remove('animation2')
   });
 
   /**
-   * Initiate Pure Counter
+   * Navbar chage item
    */
-  new PureCounter();
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('nav a');
 
-  /**
-   * Init swiper sliders
-   */
-  function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
+    function navmenuScrollspy() {
+      navLinks.forEach(navLink => {
+        const section = document.querySelector(navLink.getAttribute('href'));
+        const position = window.scrollY + 200;
 
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
-      } else {
-        new Swiper(swiperElement, config);
-      }
-    });
-  }
-
-  window.addEventListener("load", initSwiper);
-
-  /**
-   * Frequently Asked Questions Toggle
-   */
-  document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle').forEach((faqItem) => {
-    faqItem.addEventListener('click', () => {
-      faqItem.parentNode.classList.toggle('faq-active');
-    });
-  });
-
-  /**
-   * Correct scrolling position upon page load for URLs containing hash links.
-   */
-  window.addEventListener('load', function(e) {
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+        if (position >= section.offsetTop && position < (section.offsetTop + section.offsetHeight)) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          navLink.classList.add('active');
+        } else {
+          navLink.classList.remove('active');
+        }
+      });
     }
-  });
 
-  /**
-   * Navmenu Scrollspy
-   */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
-
-  function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
-      if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
-      } else {
-        navmenulink.classList.remove('active');
-      }
-    })
-  }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
-
+    window.addEventListener('scroll', navmenuScrollspy);
+    navmenuScrollspy(); // Llama a la función al cargar la página
+})();
 })();
